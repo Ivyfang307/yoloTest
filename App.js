@@ -28,11 +28,21 @@ export default class App extends Component<Props> {
 
           this.setState({
             data:responseJson.data,
-            jobList:responseJson.data.jobs
           });
-            this.arrayholder = responseJson.data.jobs;
-            console.log('data'+JSON.stringify(this.state.data))
-          console.log('joblist '+JSON.stringify(this.state.jobList))
+
+          //get first 12 jobs if the number of jobs is more than 12.
+          if(responseJson.data.jobs.length>12){
+              var newjobs=responseJson.data.jobs.slice(0,12);
+          }
+          else{
+              this.setState({
+                  jobList:responseJson.data.jobs
+              });
+              this.arrayholder = responseJson.data.jobs;
+          }
+          console.log('data'+JSON.stringify(this.state.data));
+          console.log('joblist '+JSON.stringify(this.state.jobList));
+
         })
         .catch((error) =>{
           console.error(error);
@@ -68,7 +78,7 @@ export default class App extends Component<Props> {
         <View style={{height:50,justifyContent:'center', borderBottomWidth:1,borderBottomColor:'#d8d8d8', width:'100%',alignItems:'center',}}>
             <Header/>
         </View>
-        <View style={{height:150,width:'100%',backgroundColor: '#cbcbcb', justifyContent: 'center',
+        <View style={{height:150,width:'100%',backgroundColor: '#f5f5f5', justifyContent: 'center',
           alignItems: 'center',}}>
         <TextInput style={{width:'80%',height:60,marginBottom:20,borderBottomWidth:1,borderBottomColor:'#d8d8d8'}}
                    onChangeText={(text) => this.searchFilterFunction(text)}
@@ -88,7 +98,7 @@ export default class App extends Component<Props> {
         <View style={{height:50,width:'100%',borderBottomWidth:1,borderBottomColor:'#d8d8d8',justifyContent: 'center',
           alignItems: 'center',}}>
           <Text style={{width:'80%',fontSize:15,fontWeight: 'bold',color:'#000'}}>
-            {this.state.data?this.state.data.length:0 }{' jobs found'}
+            {this.state.jobList ? this.state.jobList.length:0 }{' jobs found'}
 
           </Text>
         </View>
