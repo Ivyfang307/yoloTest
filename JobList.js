@@ -11,7 +11,6 @@ type Props = {};
 export default class JobList extends Component<Props> {
   constructor(props) {
     super(props);
-    this.arrayholder = [];
     this.state = {
         job:props.job
     };
@@ -40,8 +39,6 @@ export default class JobList extends Component<Props> {
         }
         return formattedValue;
     }
-
-
 
     render() {
     return (
@@ -108,7 +105,7 @@ export default class JobList extends Component<Props> {
               </Text>
               </View>
               <View style={{flex:1}}></View>
-              <Text style={{fontSize:15,color:'grey'}}>
+              <Text style={{fontSize:12,color:'grey'}}>
                   { moment(this.state.job.updated_at).fromNow()}
               </Text>
           </View>
