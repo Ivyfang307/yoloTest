@@ -26,7 +26,11 @@ export default class App extends Component<Props> {
 
                 //get first 12 jobs if the number of jobs is more than 12.
                 if (responseJson.data.jobs.length > 12) {
-                    var newjobs = responseJson.data.jobs.slice(0, 12);
+                    var newJobs = responseJson.data.jobs.slice(0, 12);
+                    this.setState({
+                        jobList:newJobs
+                    });
+                    this.arrayholder = newJobs;
                 } else {
                     this.setState({
                         jobList: responseJson.data.jobs
