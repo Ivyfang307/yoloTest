@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,TextInput,TouchableOpacity,FlatList} from 'react-native';
+import {Platform, StyleSheet, Text, View,TextInput,TouchableOpacity,FlatList,StatusBar} from 'react-native';
 import JobList from './JobList';
 import Header from './Header';
 const instructions = Platform.select({
@@ -72,9 +72,11 @@ export default class App extends Component<Props> {
     };
 
 
+
   render() {
     return (
       <View style={styles.container}>
+          <StatusBar hidden={true} />
         <View style={{height:50,justifyContent:'center', borderBottomWidth:1,borderBottomColor:'#d8d8d8', width:'100%',alignItems:'center',}}>
             <Header/>
         </View>
@@ -105,6 +107,7 @@ export default class App extends Component<Props> {
 
         <View style={{flex:1,width:'80%'}}>
           <FlatList
+              keyExtractor={(item, index) => 'key'+index}
               data={this.state.jobList}
               renderItem={({item}) => <JobList
               job={item}/>}
